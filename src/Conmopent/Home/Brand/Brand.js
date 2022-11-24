@@ -6,22 +6,25 @@ const Brand = () => {
   const { data: brands = [] } = useQuery({
     queryKey: ["brand"],
     queryFn: async () => {
-      const res = await fetch("brand.json");
+      const res = await fetch("http://localhost:5000/brands");
       const data = await res.json();
       return data;
     },
   });
-  console.log(brands);
+
   return (
-    <div>
+    <div className="">
       <h3> Used Smartphone Brands For You</h3>
-      <div className=" grid grid-cols-5 gap-5 ">
+      <div className=" grid grid-cols-3 lg:grid-cols-5 gap-5 ">
         {brands?.map((brand, i) => (
-          <div className="card bg-base-300 shadow-xl">
+          <Link
+            to={`/brand/${brand.brandName}`}
+            className="card bg-base-300 shadow-xl"
+          >
             <figure className="p-5">
               <img src={brand.img} alt="Shoes" className="rounded-xl w-5/6" />
             </figure>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

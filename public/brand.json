@@ -1,22 +1,90 @@
 [
   {
     "brandName": "oppo",
-    "img": "https://i.ibb.co/xhxJhgL/Screenshot-10.png"
+    "img": "https://i.ibb.co/xhxJhgL/Screenshot-10.png",
+    "name": "oppo A43",
+    "location": "jessore",
+    "price": "12000",
+    "orginalPrice": "22000",
+    "usedYears": "1 years",
+    "postDate": "24 Nav 2022",
+    "userStatus": "verified"
+  },
+  {
+    "brandName": "oppo",
+    "img": "https://i.ibb.co/xhxJhgL/Screenshot-10.png",
+    "name": "oppo A3",
+    "location": "jessore",
+    "price": "16000",
+    "orginalPrice": "66000",
+    "usedYears": "1.5 years",
+    "postDate": "24 Nav 2022",
+    "userStatus": "verified"
   },
   {
     "brandName": "MI",
-    "img": "https://i.ibb.co/bR63crM/Screenshot-11.png"
+    "img": "https://i.ibb.co/bR63crM/Screenshot-11.png",
+    "name": "MI M43",
+    "location": "jessore",
+    "price": "5000",
+    "orginalPrice": "22000",
+    "usedYears": "1 years",
+    "postDate": "24 Nav 2022",
+    "userStatus": "verified"
   },
   {
     "brandName": "walton",
-    "img": "https://i.ibb.co/nk19FsV/Screenshot-12.png"
+    "img": "https://i.ibb.co/nk19FsV/Screenshot-12.png",
+    "name": "Walton W2",
+    "location": "jessore",
+    "price": "12000",
+    "orginalPrice": "22000",
+    "usedYears": "1 years",
+    "postDate": "24 Nav 2022",
+    "userStatus": "verified"
+  },
+  {
+    "brandName": "walton",
+    "img": "https://i.ibb.co/nk19FsV/Screenshot-12.png",
+    "name": "Walton w43",
+    "location": "jessore",
+    "price": "12000",
+    "orginalPrice": "22000",
+    "usedYears": "1 years",
+    "postDate": "24 Nav 2022",
+    "userStatus": "verified"
   },
   {
     "brandName": "samsung",
-    "img": "https://i.ibb.co/R3DBjFs/Screenshot-6.png"
+    "img": "https://i.ibb.co/R3DBjFs/Screenshot-6.png",
+    "name": "samsung A10",
+    "location": "jessore",
+    "price": "7000",
+    "orginalPrice": "12000",
+    "usedYears": "1 years",
+    "postDate": "24 Nav 2022",
+    "userStatus": "verified"
+  },
+  {
+    "brandName": "samsung",
+    "img": "https://i.ibb.co/R3DBjFs/Screenshot-6.png",
+    "name": "samsung A11",
+    "location": "jessore",
+    "price": "14000",
+    "orginalPrice": "24000",
+    "usedYears": "1 years",
+    "postDate": "24 Nav 2022",
+    "userStatus": "verified"
   },
   {
     "brandName": "symphony",
-    "img": "https://i.ibb.co/dJcCmQt/Screenshot-5.png"
+    "img": "https://i.ibb.co/dJcCmQt/Screenshot-5.png",
+    "name": "Smyphony v75",
+    "location": "jessore",
+    "price": "4000",
+    "orginalPrice": "5500",
+    "usedYears": "1 years",
+    "postDate": "24 Nav 2022",
+    "userStatus": "verified"
   }
 ]
