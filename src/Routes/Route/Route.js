@@ -3,6 +3,7 @@ import Home from "../../Conmopent/Home/Home/Home";
 import BrandDetails from "../../Conmopent/Page/BrandDetails/BrandDetails";
 import Login from "../../Conmopent/Page/Login/Login";
 import PhoneDetails from "../../Conmopent/Page/PhoneDetails/PhoneDetails";
+import Register from "../../Conmopent/Page/Register/Register";
 import Main from "../../Layout/Main";
 
 export const router = createBrowserRouter([
@@ -17,6 +18,10 @@ export const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login></Login>,
+      },
+      {
+        path: "/register",
+        element: <Register></Register>,
       },
       {
         path: "/brand/:id",
