@@ -1,14 +1,35 @@
-import React from "react";
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { AuthContext } from "../../../Context/AuthProvider/AuthProvider";
+
 const Register = () => {
+  const { createUser } = useContext(AuthContext);
+
   const {
     register,
     handleSubmit,
-    watch,
+
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    const name = data.name;
+    const email = data.email;
+    const password = data.password;
+    const seller = data.seller;
+    const user = {
+      name,
+      email,
+      password,
+      seller,
+    };
+    createUser(email, password)
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <div className=" lg:w-1/2 mx-auto my-10 shadow-md border rounded-xl p-20">
       <h3 className=" text-center font-bold text-2xl"> Register Now</h3>{" "}
@@ -65,18 +86,15 @@ const Register = () => {
           </label>
           <select
             className="select select-bordered w-full "
-            {...register("accoutStatus", { required: "Select Option" })}
+            {...register("seller", { required: "Select Option" })}
           >
             <option></option>
             <option> YES </option>
             <option> NO </option>
           </select>
           <label className="label">
-            {errors.accoutStatus && (
-              <span className=" text-red-600">
-                {" "}
-                {errors.accoutStatus.message}
-              </span>
+            {errors.seller && (
+              <span className=" text-red-600"> {errors.seller.message}</span>
             )}
           </label>
         </div>

@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+
 import { Link } from "react-router-dom";
 
 const Brand = () => {
@@ -16,8 +16,9 @@ const Brand = () => {
     <div className="">
       <h3> Used Smartphone Brands For You</h3>
       <div className=" grid grid-cols-3 lg:grid-cols-5 gap-5 ">
-        {brands?.map((brand, i) => (
+        {brands?.map((brand) => (
           <Link
+            key={brand._id}
             to={`/brand/${brand.brandName}`}
             className="card bg-base-300 shadow-xl"
           >

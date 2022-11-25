@@ -10,7 +10,7 @@ const BrandDetails = () => {
       </h3>
       <div className=" grid grid-cols-2 lg:grid-cols-5 gap-5">
         {Brands.map((brand) => (
-          <div className="card bg-base-300 shadow-xl p-8">
+          <div key={brand._id} className="card bg-base-300 shadow-xl p-8">
             <figure className=" ">
               <img src={brand.img} alt="Shoes" className="rounded-xl" />
             </figure>

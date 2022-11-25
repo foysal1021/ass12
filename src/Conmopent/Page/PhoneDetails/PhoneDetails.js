@@ -7,7 +7,10 @@ const PhoneDetails = () => {
   return (
     <>
       {details.map((detail) => (
-        <div className="card lg:w-1/2 mx-auto bg-base-200 my-10 shadow-xl">
+        <div
+          key={detail._id}
+          className="card lg:w-1/2 mx-auto bg-base-200 my-10 shadow-xl"
+        >
           <figure className="px-10 pt-10">
             <img src={detail.img} alt="Shoes" className="rounded-xl w-1/3" />
           </figure>
