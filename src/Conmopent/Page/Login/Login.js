@@ -1,15 +1,26 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../Context/AuthProvider/AuthProvider";
 
 const Login = () => {
+  const { userLogin } = useContext(AuthContext);
+
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+
+  const onSubmit = (data) => {
+    console.log(data);
+    userLogin(data.email, data.password)
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <div className=" lg:w-1/2 mx-auto my-10 shadow-md border rounded-xl p-20">
       <h3 className=" text-center font-bold text-2xl"> Login Now</h3>{" "}
@@ -19,10 +30,15 @@ const Login = () => {
             <span className="label-text">Email</span>
           </label>
           <input
-            type="text"
-            {...register("email")}
+            type="email"
+            {...register("email", { required: "Type Email" })}
             className="input input-bordered w-full"
           />
+          <label className="label">
+            {errors.email && (
+              <span className=" text-red-600"> {errors.email.message}</span>
+            )}
+          </label>
         </div>
 
         <div className="form-control">
@@ -31,13 +47,18 @@ const Login = () => {
           </label>
           <input
             type="password"
-            {...register("password")}
+            {...register("password", { required: "Type Password" })}
             className="input input-bordered w-full"
           />
           <span className="label-text-alt mt-1">
             {" "}
             <Link> Forget Password?</Link>{" "}
           </span>
+          <label className="label">
+            {errors.password && (
+              <span className=" text-red-600"> {errors.password.message}</span>
+            )}
+          </label>
         </div>
 
         <label className="label mt-2 mb-3">

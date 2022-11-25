@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../Context/AuthProvider/AuthProvider";
 
 const Register = () => {
-  const { createUser } = useContext(AuthContext);
+  const { userSingup } = useContext(AuthContext);
 
   const {
     register,
@@ -16,19 +16,24 @@ const Register = () => {
     const email = data.email;
     const password = data.password;
     const seller = data.seller;
+
     const user = {
       name,
       email,
       password,
       seller,
     };
-    createUser(email, password)
+    //singup start
+    //=============
+    userSingup(email, password)
       .then((data) => {
         console.log(data);
       })
       .catch((err) => {
         console.log(err);
       });
+    //singup end
+    //=============
   };
   return (
     <div className=" lg:w-1/2 mx-auto my-10 shadow-md border rounded-xl p-20">
