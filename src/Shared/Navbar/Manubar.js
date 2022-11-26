@@ -14,7 +14,7 @@ const Manubar = () => {
       {user?.uid && (
         <li>
           {" "}
-          <Link> Dashboard</Link>
+          <Link to="/dashboard"> Dashboard</Link>
         </li>
       )}
 
