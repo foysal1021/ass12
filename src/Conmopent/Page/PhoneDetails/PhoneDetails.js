@@ -1,9 +1,10 @@
 import React from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
+import BookingModal from "../BookingModal/BookingModal";
 
 const PhoneDetails = () => {
   const details = useLoaderData();
-  console.log(details);
+
   return (
     <>
       {details.map((detail) => (
@@ -22,11 +23,15 @@ const PhoneDetails = () => {
               <p> - Used Years : {detail.usedYears}</p>
               <p> - Post Date {detail.postDate}</p>
             </div>
-            <Link className=" btn btn-info btn-md w-2/4 mx-auto">
-              {" "}
-              Book Now
-            </Link>
+
+            <label
+              htmlFor="booking-modal"
+              className="btn btn-info w-2/4 mx-auto"
+            >
+              open modal
+            </label>
           </div>
+          <BookingModal details={detail}></BookingModal>
         </div>
       ))}
     </>

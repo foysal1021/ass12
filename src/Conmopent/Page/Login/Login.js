@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Context/AuthProvider/AuthProvider";
 
 const Login = () => {
-  const { userLogin } = useContext(AuthContext);
+  const { userLogin, googleLogin } = useContext(AuthContext);
 
   const {
     register,
@@ -19,6 +19,12 @@ const Login = () => {
         console.log(result);
       })
       .catch((err) => console.log(err));
+  };
+  ///google login
+  const LoginwithGoogle = () => {
+    googleLogin()
+      .then(() => {})
+      .catch(() => {});
   };
 
   return (
@@ -72,7 +78,7 @@ const Login = () => {
       <div className="divider">OR</div>
       <div className=" mt-5">
         {" "}
-        <button className=" btn btn-outline w-full">
+        <button onClick={LoginwithGoogle} className=" btn btn-outline w-full">
           {" "}
           Singin With Google{" "}
         </button>

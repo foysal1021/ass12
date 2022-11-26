@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../Context/AuthProvider/AuthProvider";
 
 const Register = () => {
-  const { userSingup } = useContext(AuthContext);
+  const { userSingup, userUpdated, user } = useContext(AuthContext);
 
   const {
     register,
@@ -17,7 +17,7 @@ const Register = () => {
     const password = data.password;
     const seller = data.seller;
 
-    const user = {
+    const userInfo = {
       name,
       email,
       password,
@@ -27,7 +27,10 @@ const Register = () => {
     //=============
     userSingup(email, password)
       .then((data) => {
-        console.log(data);
+        userUpdated(name)
+          .then(() => {})
+          .catch(() => {});
+        console.log(user);
       })
       .catch((err) => {
         console.log(err);
