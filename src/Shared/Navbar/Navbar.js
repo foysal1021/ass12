@@ -17,15 +17,21 @@ const Navbar = () => {
         <div> logo</div>
         <div>
           {user?.uid ? (
-            <Link onClick={userLogout} to="" className=" btn btn-info ">
+            <Link onClick={userLogout} to="" className=" btn btn-info btn-sm">
               {" "}
               Logout
             </Link>
           ) : (
-            <Link to="/login" className=" btn btn-info">
-              {" "}
-              Login
-            </Link>
+            <>
+              <Link to="/login" className=" btn btn-info btn-sm">
+                {" "}
+                Login
+              </Link>
+              <Link to="/register" className=" btn btn-info btn-sm ml-5">
+                {" "}
+                Register
+              </Link>
+            </>
           )}
         </div>
       </div>

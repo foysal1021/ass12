@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Context/AuthProvider/AuthProvider";
 
 const Register = () => {
@@ -28,9 +29,18 @@ const Register = () => {
     userSingup(email, password)
       .then((data) => {
         userUpdated(name)
-          .then(() => {})
+          .then(() => {
+            fetch("http://localhost:5000/user", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(userInfo),
+            })
+              .then((res) => res.json())
+              .then((data) => console.log(data));
+          })
           .catch(() => {});
-        console.log(user);
       })
       .catch((err) => {
         console.log(err);
@@ -105,6 +115,15 @@ const Register = () => {
               <span className=" text-red-600"> {errors.seller.message}</span>
             )}
           </label>
+
+          <span>
+            {" "}
+            have a accout?{" "}
+            <Link to="/login" className=" btn btn-info btn-xs">
+              {" "}
+              Login
+            </Link>
+          </span>
         </div>
 
         <input

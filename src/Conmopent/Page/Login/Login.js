@@ -13,17 +13,33 @@ const Login = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
     userLogin(data.email, data.password)
       .then((result) => {
-        console.log(result);
+        // console.log(result);
       })
       .catch((err) => console.log(err));
   };
   ///google login
   const LoginwithGoogle = () => {
     googleLogin()
-      .then(() => {})
+      .then((result) => {
+        const user = result.user;
+        const googleUser = {
+          email: user.email,
+          name: user.displayName,
+          user: "google",
+        };
+        fetch("http://localhost:5000/googleuser", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(googleUser),
+        })
+          .then((res) => res.json())
+          .then((data) => console.log(data));
+      })
       .catch(() => {});
   };
 
@@ -68,8 +84,13 @@ const Login = () => {
         </div>
 
         <label className="label mt-2 mb-3">
-          <span className="label-text ">
-            Are you new? <Link className=" font-extrabold"> Register Now</Link>
+          <span>
+            {" "}
+            Are You New?{" "}
+            <Link to="/register" className=" btn btn-info btn-xs">
+              {" "}
+              Register
+            </Link>
           </span>
         </label>
 

@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Home from "../../Conmopent/Home/Home/Home";
+import Blog from "../../Conmopent/Page/Blog/Blog";
 import BrandDetails from "../../Conmopent/Page/BrandDetails/BrandDetails";
 import Login from "../../Conmopent/Page/Login/Login";
 import PhoneDetails from "../../Conmopent/Page/PhoneDetails/PhoneDetails";
@@ -22,6 +23,10 @@ export const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
+      },
+      {
+        path: "/blog",
+        element: <Blog></Blog>,
       },
       {
         path: "/brand/:id",
