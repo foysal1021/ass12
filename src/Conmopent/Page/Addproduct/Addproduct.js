@@ -2,9 +2,12 @@ import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../Context/AuthProvider/AuthProvider";
 import toast, { Toaster } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const Addproduct = () => {
   const { user } = useContext(AuthContext);
+  const email = user?.email;
+  const navigate = useNavigate();
 
   const [brands, setBrands] = useState([]);
   useEffect(() => {
@@ -48,6 +51,8 @@ const Addproduct = () => {
             postDate: "",
             userStatus: "",
             img: img,
+            email: email,
+            status: "available",
           };
           fetch("http://localhost:5000/upload-phone", {
             method: "POST",
@@ -60,6 +65,7 @@ const Addproduct = () => {
             .then((data) => {
               if (data) {
                 toast.success("product added");
+                navigate("/dashboard/my-product");
               }
             });
         }
@@ -72,7 +78,7 @@ const Addproduct = () => {
         onSubmit={handleSubmit(onSubmit)}
         className=" grid grid-rows-1 gap-3 rounded-2xl border shadow-lg my-10  w-4/5 p-10  mx-auto"
       >
-        <h1 className=" text-center text-3xl font-semibold"> Add Product </h1>
+        <h3 className=" text-center text-3xl font-semibold"> Add Product </h3>
 
         {/* product name */}
         <div className="form-control w-full ">
