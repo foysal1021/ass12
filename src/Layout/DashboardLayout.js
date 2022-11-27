@@ -29,6 +29,9 @@ const DashboardLayout = () => {
       });
   }, [userEmail]);
 
+  //...........Add Product............//
+  //=================================//
+
   return (
     <div>
       <Navbar></Navbar>
@@ -63,7 +66,7 @@ const DashboardLayout = () => {
                 </li>
                 <li>
                   {" "}
-                  <Link> Add Product </Link>
+                  <Link to="/dashboard/addproduct"> Add Product </Link>
                 </li>
               </>
             )}
