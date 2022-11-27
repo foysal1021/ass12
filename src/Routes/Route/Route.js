@@ -1,11 +1,13 @@
 import { createBrowserRouter } from "react-router-dom";
 import Home from "../../Conmopent/Home/Home/Home";
+import Addproduct from "../../Conmopent/Page/Addproduct/Addproduct";
 import Blog from "../../Conmopent/Page/Blog/Blog";
 import BrandDetails from "../../Conmopent/Page/BrandDetails/BrandDetails";
 import Dashboard from "../../Conmopent/Page/Dashboard/Dashboard";
 import Login from "../../Conmopent/Page/Login/Login";
 import PhoneDetails from "../../Conmopent/Page/PhoneDetails/PhoneDetails";
 import Register from "../../Conmopent/Page/Register/Register";
+import DashboardLayout from "../../Layout/DashboardLayout";
 import Main from "../../Layout/Main";
 
 export const router = createBrowserRouter([
@@ -29,10 +31,7 @@ export const router = createBrowserRouter([
         path: "/blog",
         element: <Blog></Blog>,
       },
-      {
-        path: "/dashboard",
-        element: <Dashboard></Dashboard>,
-      },
+
       {
         path: "/brand/:id",
         element: <BrandDetails></BrandDetails>,
@@ -52,6 +51,20 @@ export const router = createBrowserRouter([
           );
           return data;
         },
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <DashboardLayout></DashboardLayout>,
+    children: [
+      {
+        path: "/dashboard",
+        element: <Dashboard></Dashboard>,
+      },
+      {
+        path: "/dashboard/addproduct",
+        element: <Addproduct></Addproduct>,
       },
     ],
   },
