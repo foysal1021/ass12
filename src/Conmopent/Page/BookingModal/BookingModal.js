@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import { AuthContext } from "../../../Context/AuthProvider/AuthProvider";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
+
 const BookingModal = ({ details }) => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -33,10 +35,15 @@ const BookingModal = ({ details }) => {
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {
+          toast.success("booking confirm");
           navigate("/dashboard/myorders");
+          fetch(`http://localhost:5000/order/${details._id}`)
+            .then((res) => res.json())
+            .then((data) => console.log(data));
         }
       });
   };
+
   return (
     <>
       {/* Put this part before </body> tag */}
@@ -131,6 +138,7 @@ const BookingModal = ({ details }) => {
           </form>
         </div>
       </div>
+      <Toaster></Toaster>
     </>
   );
 };

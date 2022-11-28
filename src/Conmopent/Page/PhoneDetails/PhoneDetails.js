@@ -5,8 +5,6 @@ import BookingModal from "../BookingModal/BookingModal";
 const PhoneDetails = () => {
   const details = useLoaderData();
 
-  console.log(details);
-
   return (
     <>
       {details.map((detail) => (

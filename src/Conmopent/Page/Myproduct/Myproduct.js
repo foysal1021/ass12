@@ -11,7 +11,6 @@ const Myproduct = () => {
       .then((res) => res.json())
       .then((datas) => setMyproduct(datas));
   }, [email]);
-  console.log(myProduct);
 
   return (
     <div className=" mt-5">

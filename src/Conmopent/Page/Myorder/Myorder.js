@@ -13,7 +13,7 @@ const Myorder = () => {
       .then((data) => setMyorders(data));
   }, [email]);
 
-  console.log(myOrders);
+  // console.log(myOrders);
 
   return (
     <div>
