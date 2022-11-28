@@ -52,7 +52,13 @@ const DashboardLayout = () => {
             {isSeller?.seller === "NO" || isGoogleSeller?.user === "google" ? (
               <>
                 {" "}
-                <li> My Orders </li>
+                <li>
+                  {" "}
+                  <Link className=" btn btn-info" to="/dashboard/myorders">
+                    {" "}
+                    My Order
+                  </Link>
+                </li>
               </>
             ) : (
               <></>

@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
 import Manubar from "./Manubar";
+import logo from "../../Assat/Img/logo.jpg";
+import { FaUser } from "react-icons/fa";
 
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
@@ -13,21 +15,23 @@ const Navbar = () => {
   };
   return (
     <div>
-      <div className=" flex justify-between items-center py-5">
-        <div> logo</div>
+      <div className=" flex justify-between items-center">
+        <div className=" flex items-center">
+          {" "}
+          <img className=" " src={logo} alt="" />
+        </div>
         <div>
           {user?.uid ? (
-            <Link onClick={userLogout} to="" className=" btn btn-info btn-sm">
-              {" "}
-              Logout
+            <Link onClick={userLogout} className=" flex items-center">
+              <FaUser className=" mr-2" /> <span> Logout</span>
             </Link>
           ) : (
             <>
-              <Link to="/login" className=" btn btn-info btn-sm">
+              <Link to="/login" className="  btn-sm text-[20px]">
                 {" "}
                 Login
               </Link>
-              <Link to="/register" className=" btn btn-info btn-sm ml-5">
+              <Link to="/register" className="  btn-sm ml-2 text-[20px]">
                 {" "}
                 Register
               </Link>

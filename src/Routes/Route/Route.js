@@ -6,6 +6,7 @@ import Blog from "../../Conmopent/Page/Blog/Blog";
 import BrandDetails from "../../Conmopent/Page/BrandDetails/BrandDetails";
 import Dashboard from "../../Conmopent/Page/Dashboard/Dashboard";
 import Login from "../../Conmopent/Page/Login/Login";
+import Myorder from "../../Conmopent/Page/Myorder/Myorder";
 import Myproduct from "../../Conmopent/Page/Myproduct/Myproduct";
 import PhoneDetails from "../../Conmopent/Page/PhoneDetails/PhoneDetails";
 import Register from "../../Conmopent/Page/Register/Register";
@@ -61,16 +62,16 @@ export const router = createBrowserRouter([
     element: <DashboardLayout></DashboardLayout>,
     children: [
       {
-        path: "/dashboard",
-        element: <Dashboard></Dashboard>,
-      },
-      {
         path: "/dashboard/addproduct",
         element: <Addproduct></Addproduct>,
       },
       {
         path: "/dashboard/my-product",
         element: <Myproduct></Myproduct>,
+      },
+      {
+        path: "/dashboard/myorders",
+        element: <Myorder></Myorder>,
       },
     ],
   },

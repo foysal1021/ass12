@@ -5,6 +5,8 @@ import BookingModal from "../BookingModal/BookingModal";
 const PhoneDetails = () => {
   const details = useLoaderData();
 
+  console.log(details);
+
   return (
     <>
       {details.map((detail) => (
@@ -18,17 +20,22 @@ const PhoneDetails = () => {
           <div className="card-body items-center ">
             <div className=" ">
               <h3 className=" text-2xl mb-2 font-semibold"> {detail.name} </h3>
+              <p> - Brand : {detail.brandName}</p>
               <p> - price : ৳{detail.price}</p>
               <p> - Orginal Price : ৳{detail.orginalPrice}</p>
               <p> - Used Years : {detail.usedYears}</p>
-              <p> - Post Date {detail.postDate}</p>
+              <p> - Post Date : {detail.postDate}</p>
+              <p> - Condition : {detail.codition}</p>
+              <p> - Meet Location : {detail.location}</p>
+              <p> - Status : {detail.status}</p>
+              <p> - Phone : {detail.phone}</p>
             </div>
 
             <label
               htmlFor="booking-modal"
               className="btn btn-info w-2/4 mx-auto"
             >
-              open modal
+              Book Now
             </label>
           </div>
           <BookingModal details={detail}></BookingModal>
