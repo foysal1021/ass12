@@ -1,16 +1,30 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import React, { useContext } from "react";
 import { AuthContext } from "../../../Context/AuthProvider/AuthProvider";
 
 const Myproduct = () => {
   const { user } = useContext(AuthContext);
   const email = user?.email;
 
-  const [myProduct, setMyproduct] = useState([]);
-  useEffect(() => {
-    fetch(`http://localhost:5000/myproduct/${email}`)
+  const { data: myProduct = [], refetch } = useQuery({
+    queryKey: ["myproduct", email],
+    queryFn: async () => {
+      const res = await fetch(`http://localhost:5000/myproduct/${email}`);
+      const phone = await res.json();
+      return phone;
+    },
+  });
+  const DeletePhone = (id) => {
+    fetch(`http://localhost:5000/phones/${id}`, {
+      method: "DELETE",
+    })
       .then((res) => res.json())
-      .then((datas) => setMyproduct(datas));
-  }, [email]);
+      .then((data) => {
+        if (data.acknowledged) {
+          refetch();
+        }
+      });
+  };
 
   return (
     <div className=" mt-5">
@@ -25,6 +39,8 @@ const Myproduct = () => {
               <th className=" ">Model</th>
               <th className=" ">Price</th>
               <th className=" ">Status</th>
+              <th className=" ">Advertise</th>
+              <th className=" ">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -44,6 +60,16 @@ const Myproduct = () => {
                     {" "}
                     {product.status}
                   </button>
+                </td>
+                <td> ads </td>
+                <td>
+                  {" "}
+                  <button
+                    onClick={() => DeletePhone(product._id)}
+                    className=" btn btn-xs btn-error"
+                  >
+                    delete
+                  </button>{" "}
                 </td>
               </tr>
             ))}
