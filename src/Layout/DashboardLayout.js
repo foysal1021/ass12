@@ -31,6 +31,7 @@ const DashboardLayout = () => {
 
   //...........Add Product............//
   //=================================//
+  const admin = "yes";
 
   return (
     <div>
@@ -47,33 +48,60 @@ const DashboardLayout = () => {
         <div className="drawer-side">
           <label htmlFor="dashboard-drower" className="drawer-overlay"></label>
           <ul className="menu p-4 w-80 bg-base-100 text-base-content">
-            {/* {isGoogleSeller?.user === "google" && <li> ok </li>} */}
-
-            {isSeller?.seller === "NO" || isGoogleSeller?.user === "google" ? (
+            {admin === "yes" ? (
               <>
-                {" "}
                 <li>
-                  {" "}
-                  <Link className=" btn btn-info" to="/dashboard/myorders">
+                  <Link to="/dashboard/all-users" className=" btn btn-info ">
                     {" "}
-                    My Order
+                    ALl Users
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/dashboard/all-seller"
+                    className=" btn btn-info my-5"
+                  >
+                    {" "}
+                    ALl Sellers
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/dashboard/report-item" className=" btn btn-info">
+                    {" "}
+                    Report Item{" "}
                   </Link>
                 </li>
               </>
             ) : (
-              <></>
-            )}
-
-            {isSeller?.seller === "YES" && (
               <>
-                <li>
-                  {" "}
-                  <Link to="/dashboard/my-product"> My Product </Link>
-                </li>
-                <li>
-                  {" "}
-                  <Link to="/dashboard/addproduct"> Add Product </Link>
-                </li>
+                {isSeller?.seller === "NO" ||
+                isGoogleSeller?.user === "google" ? (
+                  <>
+                    {" "}
+                    <li>
+                      {" "}
+                      <Link className=" btn btn-info" to="/dashboard/myorders">
+                        {" "}
+                        My Order
+                      </Link>
+                    </li>
+                  </>
+                ) : (
+                  <></>
+                )}
+
+                {isSeller?.seller === "YES" && (
+                  <>
+                    <li>
+                      {" "}
+                      <Link to="/dashboard/my-product"> My Product </Link>
+                    </li>
+                    <li>
+                      {" "}
+                      <Link to="/dashboard/addproduct"> Add Product </Link>
+                    </li>
+                  </>
+                )}
               </>
             )}
           </ul>
