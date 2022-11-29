@@ -11,7 +11,6 @@ const Allseller = () => {
     },
   });
 
-  console.log(allsellers);
   return (
     <div className=" my-10 ">
       <h3 className=" text-2xl font-bold my-10"> All Sellers </h3>
@@ -28,7 +27,7 @@ const Allseller = () => {
           </thead>
           <tbody>
             {allsellers.map((seller, i) => (
-              <tr className="hover">
+              <tr className="hover" key={seller._id}>
                 <th>{i + 1}</th>
                 <td>{seller.name}</td>
                 <td>{seller.email}</td>
