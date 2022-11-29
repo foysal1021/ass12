@@ -11,6 +11,7 @@ import Myorder from "../../Conmopent/Page/Myorder/Myorder";
 import Myproduct from "../../Conmopent/Page/Myproduct/Myproduct";
 import PhoneDetails from "../../Conmopent/Page/PhoneDetails/PhoneDetails";
 import Register from "../../Conmopent/Page/Register/Register";
+import Rout404 from "../../Conmopent/Page/Rout404/Rout404";
 import DashboardLayout from "../../Layout/DashboardLayout";
 import Main from "../../Layout/Main";
 
@@ -38,6 +39,10 @@ export const router = createBrowserRouter([
       {
         path: "/Advertiseditems",
         element: <Advertiseditems></Advertiseditems>,
+      },
+      {
+        path: "*",
+        element: <Rout404></Rout404>,
       },
 
       {
