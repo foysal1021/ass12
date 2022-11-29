@@ -1,9 +1,21 @@
+import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
+import toast, { Toaster } from "react-hot-toast";
 
 const Manubar = () => {
   const { user } = useContext(AuthContext);
+
+  const { data: adsProduct = [] } = useQuery({
+    queryKey: ["Advertiseditems"],
+    queryFn: async () => {
+      const res = await fetch("http://localhost:5000/advertisedProduct");
+      const items = await res.json();
+      return items;
+    },
+  });
+  // console.log(adsProduct.length > 0 && "ok");
 
   const navItem = (
     <>
@@ -21,6 +33,12 @@ const Manubar = () => {
       <li>
         {" "}
         <Link to="/blog"> Blog</Link>
+      </li>
+      <li>
+        {" "}
+        {adsProduct.length > 0 && (
+          <Link to="/Advertiseditems"> Advertised items </Link>
+        )}
       </li>
     </>
   );

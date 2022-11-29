@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import { AuthContext } from "../../../Context/AuthProvider/AuthProvider";
 
 const Myproduct = () => {
@@ -14,6 +15,8 @@ const Myproduct = () => {
       return phone;
     },
   });
+
+  // delete phone
   const DeletePhone = (id) => {
     fetch(`http://localhost:5000/phones/${id}`, {
       method: "DELETE",
@@ -24,6 +27,32 @@ const Myproduct = () => {
           refetch();
         }
       });
+  };
+
+  // ads product find in mongodb
+  const AdsProduct = (id) => {
+    fetch(`http://localhost:5000/ADSid/${id}`)
+      .then((res) => res.json())
+      .then((datas) =>
+        datas.map((data) => (
+          <>
+            {fetch("http://localhost:5000/adsItem", {
+              method: "POST", // or 'PUT'
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(data),
+            })
+              .then((res) => res.json())
+              .then((items) => {
+                if (items.acknowledged) {
+                  toast.success("ads is running");
+                  refetch();
+                }
+              })}
+          </>
+        ))
+      );
   };
 
   return (
@@ -61,7 +90,20 @@ const Myproduct = () => {
                     {product.status}
                   </button>
                 </td>
-                <td> ads </td>
+                <>
+                  {product.status === "available" ? (
+                    <td>
+                      <button
+                        className=" btn btn-sm btn-success"
+                        onClick={() => AdsProduct(product._id)}
+                      >
+                        Ads
+                      </button>
+                    </td>
+                  ) : (
+                    <td>-</td>
+                  )}
+                </>
                 <td>
                   {" "}
                   <button
@@ -75,6 +117,7 @@ const Myproduct = () => {
             ))}
           </tbody>
         </table>
+        <Toaster />
       </div>
     </div>
   );

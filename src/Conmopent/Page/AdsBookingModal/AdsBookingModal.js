@@ -1,13 +1,9 @@
 import React, { useContext } from "react";
-import { AuthContext } from "../../../Context/AuthProvider/AuthProvider";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import toast, { Toaster } from "react-hot-toast";
+import { AuthContext } from "../../../Context/AuthProvider/AuthProvider";
 
-const BookingModal = ({ details }) => {
+const AdsBookingModal = ({ details }) => {
   const { user } = useContext(AuthContext);
-  const navigate = useNavigate();
-  console.log(details);
   const {
     register,
     handleSubmit,
@@ -16,6 +12,7 @@ const BookingModal = ({ details }) => {
   } = useForm();
   const onSubmit = (data) => {
     const userOrder = {
+      orderId: details._id,
       email: data.email,
       buyerName: data.name,
       phone: data.phone,
@@ -24,7 +21,9 @@ const BookingModal = ({ details }) => {
       location: data.addrage,
       img: details.img,
       brand: details.brandName,
+      sellstatus: "Ads",
     };
+    console.log(userOrder);
     fetch(`http://localhost:5000/order`, {
       method: "POST",
       headers: {
@@ -34,33 +33,21 @@ const BookingModal = ({ details }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.acknowledged) {
-          toast.success("booking confirm");
-          navigate("/dashboard/myorders");
-          fetch(`http://localhost:5000/order/${details._id}`)
-            .then((res) => res.json())
-            .then((data) => console.log(data));
-        }
+        console.log(data);
       });
   };
-
   return (
     <>
-      {/* Put this part before </body> tag */}
-      <input type="checkbox" id="booking-modal" className="modal-toggle" />
+      <input type="checkbox" id="adsBookingmodal" className="modal-toggle" />
       <div className="modal">
         <div className="modal-box relative">
           <label
-            htmlFor="booking-modal"
+            htmlFor="adsBookingmodal"
             className="btn btn-sm btn-circle absolute right-2 top-2"
           >
             ✕
           </label>
-
-          <h3 className=" text-2xl font-bold text-center mb-5">
-            {" "}
-            Booking Now{" "}
-          </h3>
+          <h3> Ads Booking Modal</h3>
           <form
             className=" grid grid-rows-1 gap-3"
             onSubmit={handleSubmit(onSubmit)}
@@ -139,9 +126,8 @@ const BookingModal = ({ details }) => {
           </form>
         </div>
       </div>
-      <Toaster></Toaster>
     </>
   );
 };
 
-export default BookingModal;
+export default AdsBookingModal;
