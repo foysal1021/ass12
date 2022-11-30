@@ -1,10 +1,11 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Context/AuthProvider/AuthProvider";
 
 const Register = () => {
   const { userSingup, userUpdated, user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const {
     register,
@@ -30,7 +31,7 @@ const Register = () => {
       .then((data) => {
         userUpdated(name)
           .then(() => {
-            fetch("http://localhost:5000/user", {
+            fetch("https://server-two-xi.vercel.app/user", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
@@ -39,6 +40,7 @@ const Register = () => {
             })
               .then((res) => res.json())
               .then((data) => console.log(data));
+            navigate("/");
           })
           .catch(() => {});
       })

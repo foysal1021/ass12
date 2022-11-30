@@ -7,12 +7,13 @@ const DashboardLayout = () => {
   const { user } = useContext(AuthContext);
   const userEmail = user?.email;
   const [isSeller, setisSeller] = useState(null);
+  const [ISadmin, setISAdmin] = useState({});
   const [isGoogleSeller, setisGoogleSeller] = useState({});
 
   //..........normal user............//
   //==================================//
   useEffect(() => {
-    fetch(`http://localhost:5000/user/${userEmail}`)
+    fetch(`https://server-two-xi.vercel.app/user/${userEmail}`)
       .then((res) => res.json())
       .then((datas) => {
         datas.map((data) => setisSeller(data));
@@ -22,20 +23,27 @@ const DashboardLayout = () => {
   // google user
   // user/google/:id
   useEffect(() => {
-    fetch(`http://localhost:5000/user/google/${userEmail}`)
+    fetch(`https://server-two-xi.vercel.app/user/google/${userEmail}`)
       .then((res) => res.json())
       .then((datas) => {
         datas.map((data) => setisGoogleSeller(data));
       });
   }, [userEmail]);
 
-  //...........Add Product............//
-  //=================================//
-  const admin = "yes";
-
+  // check user admin\\
+  //=================\\
+  useEffect(() => {
+    fetch(`https://server-two-xi.vercel.app/isUser/Admin/${userEmail}`)
+      .then((res) => res.json())
+      .then((isadmin) => {
+        isadmin.map((admin) => setISAdmin(admin));
+      });
+  }, [userEmail]);
+  // https://server-two-xi.vercel.app
   return (
     <div>
       <Navbar></Navbar>
+
       <div className="drawer drawer-mobile">
         <input
           id="dashboard-drower"
@@ -45,10 +53,11 @@ const DashboardLayout = () => {
         <div className="drawer-content ">
           <Outlet></Outlet>
         </div>
+
         <div className="drawer-side">
           <label htmlFor="dashboard-drower" className="drawer-overlay"></label>
           <ul className="menu p-4 w-80 bg-base-100 text-base-content">
-            {admin === "yes" ? (
+            {ISadmin.role === "Admin" ? (
               <>
                 <li>
                   <Link to="/dashboard/all-users" className=" btn btn-info ">

@@ -10,7 +10,9 @@ const Myproduct = () => {
   const { data: myProduct = [], refetch } = useQuery({
     queryKey: ["myproduct", email],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/myproduct/${email}`);
+      const res = await fetch(
+        `https://server-two-xi.vercel.app/myproduct/${email}`
+      );
       const phone = await res.json();
       return phone;
     },
@@ -18,7 +20,7 @@ const Myproduct = () => {
 
   // delete phone
   const DeletePhone = (id) => {
-    fetch(`http://localhost:5000/phones/${id}`, {
+    fetch(`https://server-two-xi.vercel.app/phones/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -31,12 +33,12 @@ const Myproduct = () => {
 
   // ads product find in mongodb
   const AdsProduct = (id) => {
-    fetch(`http://localhost:5000/ADSid/${id}`)
+    fetch(`https://server-two-xi.vercel.app/ADSid/${id}`)
       .then((res) => res.json())
       .then((datas) =>
         datas.map((data) => (
           <>
-            {fetch("http://localhost:5000/adsItem", {
+            {fetch("https://server-two-xi.vercel.app/adsItem", {
               method: "POST", // or 'PUT'
               headers: {
                 "Content-Type": "application/json",

@@ -10,7 +10,9 @@ const Manubar = () => {
   const { data: adsProduct = [] } = useQuery({
     queryKey: ["Advertiseditems"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/advertisedProduct");
+      const res = await fetch(
+        "https://server-two-xi.vercel.app/advertisedProduct"
+      );
       const items = await res.json();
       return items;
     },
@@ -74,6 +76,7 @@ const Manubar = () => {
         <ul className="menu menu-horizontal p-0">{navItem}</ul>
       </div>
       <div className="navbar-end"></div>
+
       <label
         htmlFor="dashboard-drower"
         tabIndex={1}

@@ -1,20 +1,32 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../../../Context/AuthProvider/AuthProvider";
 
 const AllBuyer = () => {
+  const { user } = useContext(AuthContext);
+  const userEmail = user?.email;
   const { data: allusers = [], refetch } = useQuery({
     queryKey: ["all user"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/all-user");
+      const res = await fetch("https://server-two-xi.vercel.app/all-user");
       const allusers = await res.json();
       return allusers;
     },
   });
 
   const deleteUser = (id) => {
-    fetch(`http://localhost:5000/users/${id}`, {
+    fetch(`https://server-two-xi.vercel.app/users/${id}=${userEmail}`, {
       method: "DELETE",
     })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data) {
+          refetch();
+        }
+      });
+  };
+  const mackadmin = (id) => {
+    fetch(`https://server-two-xi.vercel.app/users/admin/${id}=${userEmail}`)
       .then((res) => res.json())
       .then((data) => {
         if (data) {
@@ -44,10 +56,20 @@ const AllBuyer = () => {
                 <td>{users.name}</td>
                 <td>{users.email}</td>
                 <td>
-                  <button className=" btn btn-xs bg-[#0276ac] border-none">
-                    {" "}
-                    Mack Admin
-                  </button>
+                  {users.role ? (
+                    <button className=" btn btn-xs bg-[#0276ac] border-none">
+                      {" "}
+                      Admin
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => mackadmin(users._id)}
+                      className=" btn btn-xs bg-[#0276ac] border-none"
+                    >
+                      {" "}
+                      Mack Admin
+                    </button>
+                  )}
                 </td>
                 <td onClick={() => deleteUser(users._id)}>
                   {" "}

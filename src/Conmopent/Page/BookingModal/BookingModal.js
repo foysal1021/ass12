@@ -25,7 +25,7 @@ const BookingModal = ({ details }) => {
       img: details.img,
       brand: details.brandName,
     };
-    fetch(`http://localhost:5000/order`, {
+    fetch(`https://server-two-xi.vercel.app/order`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -37,7 +37,7 @@ const BookingModal = ({ details }) => {
         if (data.acknowledged) {
           toast.success("booking confirm");
           navigate("/dashboard/myorders");
-          fetch(`http://localhost:5000/order/${details._id}`)
+          fetch(`https://server-two-xi.vercel.app/order/${details._id}`)
             .then((res) => res.json())
             .then((data) => console.log(data));
         }

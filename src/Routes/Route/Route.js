@@ -53,7 +53,7 @@ export const router = createBrowserRouter([
         element: <BrandDetails></BrandDetails>,
         loader: async ({ params }) => {
           const data = fetch(
-            `http://localhost:5000/brand-details/${params.id}`
+            `https://server-two-xi.vercel.app/brand-details/${params.id}`
           );
           return data;
         },
@@ -63,7 +63,7 @@ export const router = createBrowserRouter([
         element: <PhoneDetails></PhoneDetails>,
         loader: async ({ params }) => {
           const data = fetch(
-            `http://localhost:5000/phone-details/${params.id}`
+            `https://server-two-xi.vercel.app/phone-details/${params.id}`
           );
           return data;
         },

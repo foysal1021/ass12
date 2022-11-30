@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
 import Manubar from "./Manubar";
 import logo from "../../Assat/Img/logo.jpg";
@@ -7,10 +7,12 @@ import { FaUser } from "react-icons/fa";
 
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
-
+  const navigate = useNavigate();
   const userLogout = () => {
     logout()
-      .then(() => {})
+      .then(() => {
+        navigate("/login");
+      })
       .catch(() => {});
   };
   return (

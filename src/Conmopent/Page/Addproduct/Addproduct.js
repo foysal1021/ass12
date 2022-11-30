@@ -11,7 +11,7 @@ const Addproduct = () => {
 
   const [brands, setBrands] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/brands")
+    fetch("https://server-two-xi.vercel.app/brands")
       .then((res) => res.json())
       .then((data) => setBrands(data));
   }, []);
@@ -54,7 +54,7 @@ const Addproduct = () => {
             email: email,
             status: "available",
           };
-          fetch("http://localhost:5000/upload-phone", {
+          fetch("https://server-two-xi.vercel.app/upload-phone", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

@@ -1,9 +1,12 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Context/AuthProvider/AuthProvider";
 
 const AdsBookingModal = ({ details }) => {
   const { user } = useContext(AuthContext);
+
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -24,7 +27,7 @@ const AdsBookingModal = ({ details }) => {
       sellstatus: "Ads",
     };
     console.log(userOrder);
-    fetch(`http://localhost:5000/order`, {
+    fetch(`https://server-two-xi.vercel.app/order`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -33,7 +36,7 @@ const AdsBookingModal = ({ details }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        navigate("/dashboard/myorders");
       });
   };
   return (

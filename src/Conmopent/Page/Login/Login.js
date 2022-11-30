@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Context/AuthProvider/AuthProvider";
 
 const Login = () => {
   const { userLogin, googleLogin } = useContext(AuthContext);
-
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -16,7 +16,7 @@ const Login = () => {
     // console.log(data);
     userLogin(data.email, data.password)
       .then((result) => {
-        // console.log(result);
+        navigate("/");
       })
       .catch((err) => console.log(err));
   };
@@ -30,7 +30,7 @@ const Login = () => {
           name: user.displayName,
           user: "google",
         };
-        fetch("http://localhost:5000/googleuser", {
+        fetch("https://server-two-xi.vercel.app/googleuser", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -39,6 +39,7 @@ const Login = () => {
         })
           .then((res) => res.json())
           .then((data) => console.log(data));
+        navigate("/");
       })
       .catch(() => {});
   };
