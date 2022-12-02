@@ -1,4 +1,6 @@
-## Addmin Email and password
+## Admin Email and password
+
+### i am sorry for don't added admin email and password. i will added it today form help support session by Gais Uddin. pls consider me.
 
 -email :iqbal@gmail.com
 -password:iqbal@gmail.com
