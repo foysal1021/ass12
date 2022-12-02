@@ -1,6 +1,7 @@
-# Getting Started with Create React App
+## Addmin Email and password
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+-email :iqbal@gmail.com
+-password:iqbal@gmail.com
 
 ## Available Scripts
 
