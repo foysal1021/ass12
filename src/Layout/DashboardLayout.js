@@ -9,6 +9,7 @@ const DashboardLayout = () => {
   const [isSeller, setisSeller] = useState(null);
   const [ISadmin, setISAdmin] = useState({});
   const [isGoogleSeller, setisGoogleSeller] = useState({});
+  const [loading, setLoading] = useState(true);
 
   //..........normal user............//
   //==================================//
@@ -43,7 +44,9 @@ const DashboardLayout = () => {
   return (
     <div>
       <Navbar></Navbar>
-
+      <div className=" text-center">
+        {loading === true && <progress className="progress w-56"></progress>}
+      </div>{" "}
       <div className="drawer drawer-mobile">
         <input
           id="dashboard-drower"
@@ -79,7 +82,8 @@ const DashboardLayout = () => {
                     {" "}
                     Report Item{" "}
                   </Link>
-                </li>
+                </li>{" "}
+                {loading === true && setLoading(false)}
               </>
             ) : (
               <>
@@ -94,6 +98,7 @@ const DashboardLayout = () => {
                         My Order
                       </Link>
                     </li>
+                    {loading === true && setLoading(false)}
                   </>
                 ) : (
                   <></>
@@ -108,7 +113,8 @@ const DashboardLayout = () => {
                     <li>
                       {" "}
                       <Link to="/dashboard/addproduct"> Add Product </Link>
-                    </li>
+                    </li>{" "}
+                    {loading === true && setLoading(false)}
                   </>
                 )}
               </>
